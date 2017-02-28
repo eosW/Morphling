@@ -93,17 +93,17 @@ def p_sentence(p):
     """
     p[0] = p[1]
 
-def p_declear(p):
+def p_declare(p):
     """
     declare : TYPE NAME
     """
-    p[0] = ('declear', p[1], p[2])
+    p[0] = ('declare', p[1], p[2])
 
-def p_declear2(p):
+def p_declare2(p):
     """
     declare : TYPE NAME ASSIGN expr
     """
-    p[0] = ('declear_init', p[1], p[2], p[4])
+    p[0] = ('declare_init', p[1], p[2], p[4])
 
 def p_assign(p):
     """
@@ -115,10 +115,15 @@ def p_control(p):
     """
     control : while
     | if
-    | BREAK
-    | CONTINUE
     """
     p[0] = p[1]
+
+def p_control2(p):
+    """
+    control : BREAK
+    | CONTINUE
+    """
+    p[0] = (p[1],)
 
 def p_while(p):
     """
@@ -148,7 +153,7 @@ def p_else(p):
     """
     else : ELSE COLON block
     """
-    p[0] = [(True, p[3])]
+    p[0] = [('true', p[3])]
 
 def p_else2(p):
     """
@@ -199,7 +204,7 @@ def p_aexpr_n(p):
     | BOOL
     | NAME
     """
-    p[0] = p[1]
+    p[0] = (p.slice[1].type,p[1])
 
 def p_expr_b(p):
     """
@@ -257,7 +262,7 @@ parser = yacc.yacc()
 data = "float a; a = 4e4*7+-.5**7; int b = 5^7<<4;"
 print data
 print parser.parse(data)
-data = "while (a>5): a = 7+9; b = false; end;"
+data = "while (a>5): a = 7+9; b = false; break; end;"
 print data
 print parser.parse(data)
 data = "if (a>3): a=6; elif (a>6): a=7; elif (a<0): a=1; else: a=9; end;"

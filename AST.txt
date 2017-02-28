@@ -1,0 +1,32 @@
+Nodes:
+
+block
+sentence : declare, declare_init, assign, if, while, break, continue
+expr
+
+Spec:
+
+block = [sentence, sentence, sentence, ...]
+block is the root node of an AST
+
+declare = ('declare', type, name)
+declare_init = ('declare_init', type, name, expr)
+assign = ('assign', 'b', expr)
+
+while = ('while', expr, block)
+
+if (c1):
+    b1
+elif (c2):
+    b2
+elif (c3):
+    b3
+else:
+    b4
+end;
+= ('if', [(c1,b1),(c2,b2),(c3,b3),(true,b4)])
+
+break = ('break',)
+continue = ('continue',)
+
+expr = (operator, expr1) | (operator, expr1, expr2) | (type, value)
