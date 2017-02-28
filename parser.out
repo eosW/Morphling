@@ -1,0 +1,2875 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> block
+Rule 1     block -> block sentence
+Rule 2     block -> <empty>
+Rule 3     sentence -> declare SEMICOLON
+Rule 4     sentence -> assign SEMICOLON
+Rule 5     sentence -> control SEMICOLON
+Rule 6     declare -> TYPE NAME
+Rule 7     declare -> TYPE NAME ASSIGN expr
+Rule 8     assign -> NAME ASSIGN expr
+Rule 9     control -> while
+Rule 10    control -> if
+Rule 11    control -> BREAK
+Rule 12    control -> CONTINUE
+Rule 13    while -> WHILE LP expr RP COLON block END
+Rule 14    if -> IF LP expr RP COLON block elif else END
+Rule 15    elif -> elif ELIF LP expr RP COLON block
+Rule 16    elif -> <empty>
+Rule 17    else -> ELSE COLON block
+Rule 18    else -> <empty>
+Rule 19    aexpr -> aexpr BOR aexpr
+Rule 20    aexpr -> aexpr BXOR aexpr
+Rule 21    aexpr -> aexpr BAND aexpr
+Rule 22    aexpr -> aexpr BRSHIFT aexpr
+Rule 23    aexpr -> aexpr BLSHIFT aexpr
+Rule 24    aexpr -> aexpr PLUS aexpr
+Rule 25    aexpr -> aexpr MINUS aexpr
+Rule 26    aexpr -> aexpr TIMES aexpr
+Rule 27    aexpr -> aexpr MODS aexpr
+Rule 28    aexpr -> aexpr DIVIDES aexpr
+Rule 29    aexpr -> aexpr EXP aexpr
+Rule 30    aexpr -> MINUS aexpr
+Rule 31    aexpr -> BNOT aexpr
+Rule 32    aexpr -> LP aexpr RP
+Rule 33    aexpr -> TYPE LP aexpr RP
+Rule 34    aexpr -> INT
+Rule 35    aexpr -> FLOAT
+Rule 36    aexpr -> BOOL
+Rule 37    aexpr -> NAME
+Rule 38    expr -> expr OR expr
+Rule 39    expr -> expr AND expr
+Rule 40    expr -> aexpr EQ aexpr
+Rule 41    expr -> aexpr NEQ aexpr
+Rule 42    expr -> aexpr GT aexpr
+Rule 43    expr -> aexpr GET aexpr
+Rule 44    expr -> aexpr LT aexpr
+Rule 45    expr -> aexpr LET aexpr
+Rule 46    expr -> NOT expr
+Rule 47    expr -> aexpr
+
+Terminals, with rules where they appear
+
+AND                  : 39
+ASSIGN               : 7 8
+BAND                 : 21
+BLSHIFT              : 23
+BNOT                 : 31
+BOOL                 : 36
+BOR                  : 19
+BREAK                : 11
+BRSHIFT              : 22
+BXOR                 : 20
+COLON                : 13 14 15 17
+CONTINUE             : 12
+DIVIDES              : 28
+ELIF                 : 15
+ELSE                 : 17
+END                  : 13 14
+EQ                   : 40
+EXP                  : 29
+FLOAT                : 35
+GET                  : 43
+GT                   : 42
+IF                   : 14
+INT                  : 34
+LET                  : 45
+LP                   : 13 14 15 32 33
+LT                   : 44
+MINUS                : 25 30
+MODS                 : 27
+NAME                 : 6 7 8 37
+NEQ                  : 41
+NOT                  : 46
+OR                   : 38
+PLUS                 : 24
+RP                   : 13 14 15 32 33
+SEMICOLON            : 3 4 5
+TIMES                : 26
+TYPE                 : 6 7 33
+WHILE                : 13
+error                : 
+
+Nonterminals, with rules where they appear
+
+aexpr                : 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 31 32 33 40 40 41 41 42 42 43 43 44 44 45 45 47
+assign               : 4
+block                : 1 13 14 15 17 0
+control              : 5
+declare              : 3
+elif                 : 14 15
+else                 : 14
+expr                 : 7 8 13 14 15 38 38 39 39 46
+if                   : 10
+sentence             : 1
+while                : 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . block
+    (1) block -> . block sentence
+    (2) block -> .
+
+    TYPE            reduce using rule 2 (block -> .)
+    NAME            reduce using rule 2 (block -> .)
+    BREAK           reduce using rule 2 (block -> .)
+    CONTINUE        reduce using rule 2 (block -> .)
+    WHILE           reduce using rule 2 (block -> .)
+    IF              reduce using rule 2 (block -> .)
+    $end            reduce using rule 2 (block -> .)
+
+    block                          shift and go to state 1
+
+state 1
+
+    (0) S' -> block .
+    (1) block -> block . sentence
+    (3) sentence -> . declare SEMICOLON
+    (4) sentence -> . assign SEMICOLON
+    (5) sentence -> . control SEMICOLON
+    (6) declare -> . TYPE NAME
+    (7) declare -> . TYPE NAME ASSIGN expr
+    (8) assign -> . NAME ASSIGN expr
+    (9) control -> . while
+    (10) control -> . if
+    (11) control -> . BREAK
+    (12) control -> . CONTINUE
+    (13) while -> . WHILE LP expr RP COLON block END
+    (14) if -> . IF LP expr RP COLON block elif else END
+
+    TYPE            shift and go to state 12
+    NAME            shift and go to state 7
+    BREAK           shift and go to state 9
+    CONTINUE        shift and go to state 11
+    WHILE           shift and go to state 4
+    IF              shift and go to state 6
+
+    control                        shift and go to state 2
+    sentence                       shift and go to state 3
+    declare                        shift and go to state 13
+    while                          shift and go to state 10
+    assign                         shift and go to state 8
+    if                             shift and go to state 5
+
+state 2
+
+    (5) sentence -> control . SEMICOLON
+
+    SEMICOLON       shift and go to state 14
+
+
+state 3
+
+    (1) block -> block sentence .
+
+    TYPE            reduce using rule 1 (block -> block sentence .)
+    NAME            reduce using rule 1 (block -> block sentence .)
+    BREAK           reduce using rule 1 (block -> block sentence .)
+    CONTINUE        reduce using rule 1 (block -> block sentence .)
+    WHILE           reduce using rule 1 (block -> block sentence .)
+    IF              reduce using rule 1 (block -> block sentence .)
+    ELIF            reduce using rule 1 (block -> block sentence .)
+    ELSE            reduce using rule 1 (block -> block sentence .)
+    END             reduce using rule 1 (block -> block sentence .)
+    $end            reduce using rule 1 (block -> block sentence .)
+
+
+state 4
+
+    (13) while -> WHILE . LP expr RP COLON block END
+
+    LP              shift and go to state 15
+
+
+state 5
+
+    (10) control -> if .
+
+    SEMICOLON       reduce using rule 10 (control -> if .)
+
+
+state 6
+
+    (14) if -> IF . LP expr RP COLON block elif else END
+
+    LP              shift and go to state 16
+
+
+state 7
+
+    (8) assign -> NAME . ASSIGN expr
+
+    ASSIGN          shift and go to state 17
+
+
+state 8
+
+    (4) sentence -> assign . SEMICOLON
+
+    SEMICOLON       shift and go to state 18
+
+
+state 9
+
+    (11) control -> BREAK .
+
+    SEMICOLON       reduce using rule 11 (control -> BREAK .)
+
+
+state 10
+
+    (9) control -> while .
+
+    SEMICOLON       reduce using rule 9 (control -> while .)
+
+
+state 11
+
+    (12) control -> CONTINUE .
+
+    SEMICOLON       reduce using rule 12 (control -> CONTINUE .)
+
+
+state 12
+
+    (6) declare -> TYPE . NAME
+    (7) declare -> TYPE . NAME ASSIGN expr
+
+    NAME            shift and go to state 19
+
+
+state 13
+
+    (3) sentence -> declare . SEMICOLON
+
+    SEMICOLON       shift and go to state 20
+
+
+state 14
+
+    (5) sentence -> control SEMICOLON .
+
+    TYPE            reduce using rule 5 (sentence -> control SEMICOLON .)
+    NAME            reduce using rule 5 (sentence -> control SEMICOLON .)
+    BREAK           reduce using rule 5 (sentence -> control SEMICOLON .)
+    CONTINUE        reduce using rule 5 (sentence -> control SEMICOLON .)
+    WHILE           reduce using rule 5 (sentence -> control SEMICOLON .)
+    IF              reduce using rule 5 (sentence -> control SEMICOLON .)
+    END             reduce using rule 5 (sentence -> control SEMICOLON .)
+    ELIF            reduce using rule 5 (sentence -> control SEMICOLON .)
+    ELSE            reduce using rule 5 (sentence -> control SEMICOLON .)
+    $end            reduce using rule 5 (sentence -> control SEMICOLON .)
+
+
+state 15
+
+    (13) while -> WHILE LP . expr RP COLON block END
+    (38) expr -> . expr OR expr
+    (39) expr -> . expr AND expr
+    (40) expr -> . aexpr EQ aexpr
+    (41) expr -> . aexpr NEQ aexpr
+    (42) expr -> . aexpr GT aexpr
+    (43) expr -> . aexpr GET aexpr
+    (44) expr -> . aexpr LT aexpr
+    (45) expr -> . aexpr LET aexpr
+    (46) expr -> . NOT expr
+    (47) expr -> . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    NOT             shift and go to state 30
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    expr                           shift and go to state 28
+    aexpr                          shift and go to state 22
+
+state 16
+
+    (14) if -> IF LP . expr RP COLON block elif else END
+    (38) expr -> . expr OR expr
+    (39) expr -> . expr AND expr
+    (40) expr -> . aexpr EQ aexpr
+    (41) expr -> . aexpr NEQ aexpr
+    (42) expr -> . aexpr GT aexpr
+    (43) expr -> . aexpr GET aexpr
+    (44) expr -> . aexpr LT aexpr
+    (45) expr -> . aexpr LET aexpr
+    (46) expr -> . NOT expr
+    (47) expr -> . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    NOT             shift and go to state 30
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    expr                           shift and go to state 32
+    aexpr                          shift and go to state 22
+
+state 17
+
+    (8) assign -> NAME ASSIGN . expr
+    (38) expr -> . expr OR expr
+    (39) expr -> . expr AND expr
+    (40) expr -> . aexpr EQ aexpr
+    (41) expr -> . aexpr NEQ aexpr
+    (42) expr -> . aexpr GT aexpr
+    (43) expr -> . aexpr GET aexpr
+    (44) expr -> . aexpr LT aexpr
+    (45) expr -> . aexpr LET aexpr
+    (46) expr -> . NOT expr
+    (47) expr -> . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    NOT             shift and go to state 30
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    expr                           shift and go to state 33
+    aexpr                          shift and go to state 22
+
+state 18
+
+    (4) sentence -> assign SEMICOLON .
+
+    TYPE            reduce using rule 4 (sentence -> assign SEMICOLON .)
+    NAME            reduce using rule 4 (sentence -> assign SEMICOLON .)
+    BREAK           reduce using rule 4 (sentence -> assign SEMICOLON .)
+    CONTINUE        reduce using rule 4 (sentence -> assign SEMICOLON .)
+    WHILE           reduce using rule 4 (sentence -> assign SEMICOLON .)
+    IF              reduce using rule 4 (sentence -> assign SEMICOLON .)
+    END             reduce using rule 4 (sentence -> assign SEMICOLON .)
+    ELIF            reduce using rule 4 (sentence -> assign SEMICOLON .)
+    ELSE            reduce using rule 4 (sentence -> assign SEMICOLON .)
+    $end            reduce using rule 4 (sentence -> assign SEMICOLON .)
+
+
+state 19
+
+    (6) declare -> TYPE NAME .
+    (7) declare -> TYPE NAME . ASSIGN expr
+
+    SEMICOLON       reduce using rule 6 (declare -> TYPE NAME .)
+    ASSIGN          shift and go to state 34
+
+
+state 20
+
+    (3) sentence -> declare SEMICOLON .
+
+    TYPE            reduce using rule 3 (sentence -> declare SEMICOLON .)
+    NAME            reduce using rule 3 (sentence -> declare SEMICOLON .)
+    BREAK           reduce using rule 3 (sentence -> declare SEMICOLON .)
+    CONTINUE        reduce using rule 3 (sentence -> declare SEMICOLON .)
+    WHILE           reduce using rule 3 (sentence -> declare SEMICOLON .)
+    IF              reduce using rule 3 (sentence -> declare SEMICOLON .)
+    END             reduce using rule 3 (sentence -> declare SEMICOLON .)
+    ELIF            reduce using rule 3 (sentence -> declare SEMICOLON .)
+    ELSE            reduce using rule 3 (sentence -> declare SEMICOLON .)
+    $end            reduce using rule 3 (sentence -> declare SEMICOLON .)
+
+
+state 21
+
+    (31) aexpr -> BNOT . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 35
+
+state 22
+
+    (40) expr -> aexpr . EQ aexpr
+    (41) expr -> aexpr . NEQ aexpr
+    (42) expr -> aexpr . GT aexpr
+    (43) expr -> aexpr . GET aexpr
+    (44) expr -> aexpr . LT aexpr
+    (45) expr -> aexpr . LET aexpr
+    (47) expr -> aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    EQ              shift and go to state 51
+    NEQ             shift and go to state 52
+    GT              shift and go to state 36
+    GET             shift and go to state 39
+    LT              shift and go to state 45
+    LET             shift and go to state 47
+    OR              reduce using rule 47 (expr -> aexpr .)
+    AND             reduce using rule 47 (expr -> aexpr .)
+    SEMICOLON       reduce using rule 47 (expr -> aexpr .)
+    RP              reduce using rule 47 (expr -> aexpr .)
+    BOR             shift and go to state 41
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+
+state 23
+
+    (30) aexpr -> MINUS . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 53
+
+state 24
+
+    (32) aexpr -> LP . aexpr RP
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 54
+
+state 25
+
+    (36) aexpr -> BOOL .
+
+    BOR             reduce using rule 36 (aexpr -> BOOL .)
+    BXOR            reduce using rule 36 (aexpr -> BOOL .)
+    BAND            reduce using rule 36 (aexpr -> BOOL .)
+    BRSHIFT         reduce using rule 36 (aexpr -> BOOL .)
+    BLSHIFT         reduce using rule 36 (aexpr -> BOOL .)
+    PLUS            reduce using rule 36 (aexpr -> BOOL .)
+    MINUS           reduce using rule 36 (aexpr -> BOOL .)
+    TIMES           reduce using rule 36 (aexpr -> BOOL .)
+    MODS            reduce using rule 36 (aexpr -> BOOL .)
+    DIVIDES         reduce using rule 36 (aexpr -> BOOL .)
+    EXP             reduce using rule 36 (aexpr -> BOOL .)
+    RP              reduce using rule 36 (aexpr -> BOOL .)
+    OR              reduce using rule 36 (aexpr -> BOOL .)
+    AND             reduce using rule 36 (aexpr -> BOOL .)
+    SEMICOLON       reduce using rule 36 (aexpr -> BOOL .)
+    EQ              reduce using rule 36 (aexpr -> BOOL .)
+    NEQ             reduce using rule 36 (aexpr -> BOOL .)
+    GT              reduce using rule 36 (aexpr -> BOOL .)
+    GET             reduce using rule 36 (aexpr -> BOOL .)
+    LT              reduce using rule 36 (aexpr -> BOOL .)
+    LET             reduce using rule 36 (aexpr -> BOOL .)
+
+
+state 26
+
+    (37) aexpr -> NAME .
+
+    BOR             reduce using rule 37 (aexpr -> NAME .)
+    BXOR            reduce using rule 37 (aexpr -> NAME .)
+    BAND            reduce using rule 37 (aexpr -> NAME .)
+    BRSHIFT         reduce using rule 37 (aexpr -> NAME .)
+    BLSHIFT         reduce using rule 37 (aexpr -> NAME .)
+    PLUS            reduce using rule 37 (aexpr -> NAME .)
+    MINUS           reduce using rule 37 (aexpr -> NAME .)
+    TIMES           reduce using rule 37 (aexpr -> NAME .)
+    MODS            reduce using rule 37 (aexpr -> NAME .)
+    DIVIDES         reduce using rule 37 (aexpr -> NAME .)
+    EXP             reduce using rule 37 (aexpr -> NAME .)
+    RP              reduce using rule 37 (aexpr -> NAME .)
+    OR              reduce using rule 37 (aexpr -> NAME .)
+    AND             reduce using rule 37 (aexpr -> NAME .)
+    SEMICOLON       reduce using rule 37 (aexpr -> NAME .)
+    EQ              reduce using rule 37 (aexpr -> NAME .)
+    NEQ             reduce using rule 37 (aexpr -> NAME .)
+    GT              reduce using rule 37 (aexpr -> NAME .)
+    GET             reduce using rule 37 (aexpr -> NAME .)
+    LT              reduce using rule 37 (aexpr -> NAME .)
+    LET             reduce using rule 37 (aexpr -> NAME .)
+
+
+state 27
+
+    (34) aexpr -> INT .
+
+    BOR             reduce using rule 34 (aexpr -> INT .)
+    BXOR            reduce using rule 34 (aexpr -> INT .)
+    BAND            reduce using rule 34 (aexpr -> INT .)
+    BRSHIFT         reduce using rule 34 (aexpr -> INT .)
+    BLSHIFT         reduce using rule 34 (aexpr -> INT .)
+    PLUS            reduce using rule 34 (aexpr -> INT .)
+    MINUS           reduce using rule 34 (aexpr -> INT .)
+    TIMES           reduce using rule 34 (aexpr -> INT .)
+    MODS            reduce using rule 34 (aexpr -> INT .)
+    DIVIDES         reduce using rule 34 (aexpr -> INT .)
+    EXP             reduce using rule 34 (aexpr -> INT .)
+    RP              reduce using rule 34 (aexpr -> INT .)
+    OR              reduce using rule 34 (aexpr -> INT .)
+    AND             reduce using rule 34 (aexpr -> INT .)
+    SEMICOLON       reduce using rule 34 (aexpr -> INT .)
+    EQ              reduce using rule 34 (aexpr -> INT .)
+    NEQ             reduce using rule 34 (aexpr -> INT .)
+    GT              reduce using rule 34 (aexpr -> INT .)
+    GET             reduce using rule 34 (aexpr -> INT .)
+    LT              reduce using rule 34 (aexpr -> INT .)
+    LET             reduce using rule 34 (aexpr -> INT .)
+
+
+state 28
+
+    (13) while -> WHILE LP expr . RP COLON block END
+    (38) expr -> expr . OR expr
+    (39) expr -> expr . AND expr
+
+    RP              shift and go to state 56
+    OR              shift and go to state 57
+    AND             shift and go to state 55
+
+
+state 29
+
+    (35) aexpr -> FLOAT .
+
+    BOR             reduce using rule 35 (aexpr -> FLOAT .)
+    BXOR            reduce using rule 35 (aexpr -> FLOAT .)
+    BAND            reduce using rule 35 (aexpr -> FLOAT .)
+    BRSHIFT         reduce using rule 35 (aexpr -> FLOAT .)
+    BLSHIFT         reduce using rule 35 (aexpr -> FLOAT .)
+    PLUS            reduce using rule 35 (aexpr -> FLOAT .)
+    MINUS           reduce using rule 35 (aexpr -> FLOAT .)
+    TIMES           reduce using rule 35 (aexpr -> FLOAT .)
+    MODS            reduce using rule 35 (aexpr -> FLOAT .)
+    DIVIDES         reduce using rule 35 (aexpr -> FLOAT .)
+    EXP             reduce using rule 35 (aexpr -> FLOAT .)
+    RP              reduce using rule 35 (aexpr -> FLOAT .)
+    OR              reduce using rule 35 (aexpr -> FLOAT .)
+    AND             reduce using rule 35 (aexpr -> FLOAT .)
+    SEMICOLON       reduce using rule 35 (aexpr -> FLOAT .)
+    EQ              reduce using rule 35 (aexpr -> FLOAT .)
+    NEQ             reduce using rule 35 (aexpr -> FLOAT .)
+    GT              reduce using rule 35 (aexpr -> FLOAT .)
+    GET             reduce using rule 35 (aexpr -> FLOAT .)
+    LT              reduce using rule 35 (aexpr -> FLOAT .)
+    LET             reduce using rule 35 (aexpr -> FLOAT .)
+
+
+state 30
+
+    (46) expr -> NOT . expr
+    (38) expr -> . expr OR expr
+    (39) expr -> . expr AND expr
+    (40) expr -> . aexpr EQ aexpr
+    (41) expr -> . aexpr NEQ aexpr
+    (42) expr -> . aexpr GT aexpr
+    (43) expr -> . aexpr GET aexpr
+    (44) expr -> . aexpr LT aexpr
+    (45) expr -> . aexpr LET aexpr
+    (46) expr -> . NOT expr
+    (47) expr -> . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    NOT             shift and go to state 30
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    expr                           shift and go to state 58
+    aexpr                          shift and go to state 22
+
+state 31
+
+    (33) aexpr -> TYPE . LP aexpr RP
+
+    LP              shift and go to state 59
+
+
+state 32
+
+    (14) if -> IF LP expr . RP COLON block elif else END
+    (38) expr -> expr . OR expr
+    (39) expr -> expr . AND expr
+
+    RP              shift and go to state 60
+    OR              shift and go to state 57
+    AND             shift and go to state 55
+
+
+state 33
+
+    (8) assign -> NAME ASSIGN expr .
+    (38) expr -> expr . OR expr
+    (39) expr -> expr . AND expr
+
+    SEMICOLON       reduce using rule 8 (assign -> NAME ASSIGN expr .)
+    OR              shift and go to state 57
+    AND             shift and go to state 55
+
+
+state 34
+
+    (7) declare -> TYPE NAME ASSIGN . expr
+    (38) expr -> . expr OR expr
+    (39) expr -> . expr AND expr
+    (40) expr -> . aexpr EQ aexpr
+    (41) expr -> . aexpr NEQ aexpr
+    (42) expr -> . aexpr GT aexpr
+    (43) expr -> . aexpr GET aexpr
+    (44) expr -> . aexpr LT aexpr
+    (45) expr -> . aexpr LET aexpr
+    (46) expr -> . NOT expr
+    (47) expr -> . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    NOT             shift and go to state 30
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    expr                           shift and go to state 61
+    aexpr                          shift and go to state 22
+
+state 35
+
+    (31) aexpr -> BNOT aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 31 (aexpr -> BNOT aexpr .)
+    BXOR            reduce using rule 31 (aexpr -> BNOT aexpr .)
+    BAND            reduce using rule 31 (aexpr -> BNOT aexpr .)
+    BRSHIFT         reduce using rule 31 (aexpr -> BNOT aexpr .)
+    BLSHIFT         reduce using rule 31 (aexpr -> BNOT aexpr .)
+    PLUS            reduce using rule 31 (aexpr -> BNOT aexpr .)
+    MINUS           reduce using rule 31 (aexpr -> BNOT aexpr .)
+    TIMES           reduce using rule 31 (aexpr -> BNOT aexpr .)
+    MODS            reduce using rule 31 (aexpr -> BNOT aexpr .)
+    DIVIDES         reduce using rule 31 (aexpr -> BNOT aexpr .)
+    RP              reduce using rule 31 (aexpr -> BNOT aexpr .)
+    OR              reduce using rule 31 (aexpr -> BNOT aexpr .)
+    AND             reduce using rule 31 (aexpr -> BNOT aexpr .)
+    SEMICOLON       reduce using rule 31 (aexpr -> BNOT aexpr .)
+    EQ              reduce using rule 31 (aexpr -> BNOT aexpr .)
+    NEQ             reduce using rule 31 (aexpr -> BNOT aexpr .)
+    GT              reduce using rule 31 (aexpr -> BNOT aexpr .)
+    GET             reduce using rule 31 (aexpr -> BNOT aexpr .)
+    LT              reduce using rule 31 (aexpr -> BNOT aexpr .)
+    LET             reduce using rule 31 (aexpr -> BNOT aexpr .)
+    EXP             shift and go to state 38
+
+  ! EXP             [ reduce using rule 31 (aexpr -> BNOT aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 48 ]
+  ! TIMES           [ shift and go to state 50 ]
+  ! MODS            [ shift and go to state 46 ]
+  ! DIVIDES         [ shift and go to state 37 ]
+
+
+state 36
+
+    (42) expr -> aexpr GT . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 62
+
+state 37
+
+    (28) aexpr -> aexpr DIVIDES . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 63
+
+state 38
+
+    (29) aexpr -> aexpr EXP . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 64
+
+state 39
+
+    (43) expr -> aexpr GET . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 65
+
+state 40
+
+    (20) aexpr -> aexpr BXOR . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 66
+
+state 41
+
+    (19) aexpr -> aexpr BOR . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 67
+
+state 42
+
+    (23) aexpr -> aexpr BLSHIFT . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 68
+
+state 43
+
+    (22) aexpr -> aexpr BRSHIFT . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 69
+
+state 44
+
+    (21) aexpr -> aexpr BAND . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 70
+
+state 45
+
+    (44) expr -> aexpr LT . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 71
+
+state 46
+
+    (27) aexpr -> aexpr MODS . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 72
+
+state 47
+
+    (45) expr -> aexpr LET . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 73
+
+state 48
+
+    (25) aexpr -> aexpr MINUS . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 74
+
+state 49
+
+    (24) aexpr -> aexpr PLUS . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 75
+
+state 50
+
+    (26) aexpr -> aexpr TIMES . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 76
+
+state 51
+
+    (40) expr -> aexpr EQ . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 77
+
+state 52
+
+    (41) expr -> aexpr NEQ . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 78
+
+state 53
+
+    (30) aexpr -> MINUS aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 30 (aexpr -> MINUS aexpr .)
+    BXOR            reduce using rule 30 (aexpr -> MINUS aexpr .)
+    BAND            reduce using rule 30 (aexpr -> MINUS aexpr .)
+    BRSHIFT         reduce using rule 30 (aexpr -> MINUS aexpr .)
+    BLSHIFT         reduce using rule 30 (aexpr -> MINUS aexpr .)
+    PLUS            reduce using rule 30 (aexpr -> MINUS aexpr .)
+    MINUS           reduce using rule 30 (aexpr -> MINUS aexpr .)
+    TIMES           reduce using rule 30 (aexpr -> MINUS aexpr .)
+    MODS            reduce using rule 30 (aexpr -> MINUS aexpr .)
+    DIVIDES         reduce using rule 30 (aexpr -> MINUS aexpr .)
+    RP              reduce using rule 30 (aexpr -> MINUS aexpr .)
+    OR              reduce using rule 30 (aexpr -> MINUS aexpr .)
+    AND             reduce using rule 30 (aexpr -> MINUS aexpr .)
+    SEMICOLON       reduce using rule 30 (aexpr -> MINUS aexpr .)
+    EQ              reduce using rule 30 (aexpr -> MINUS aexpr .)
+    NEQ             reduce using rule 30 (aexpr -> MINUS aexpr .)
+    GT              reduce using rule 30 (aexpr -> MINUS aexpr .)
+    GET             reduce using rule 30 (aexpr -> MINUS aexpr .)
+    LT              reduce using rule 30 (aexpr -> MINUS aexpr .)
+    LET             reduce using rule 30 (aexpr -> MINUS aexpr .)
+    EXP             shift and go to state 38
+
+  ! EXP             [ reduce using rule 30 (aexpr -> MINUS aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 48 ]
+  ! TIMES           [ shift and go to state 50 ]
+  ! MODS            [ shift and go to state 46 ]
+  ! DIVIDES         [ shift and go to state 37 ]
+
+
+state 54
+
+    (32) aexpr -> LP aexpr . RP
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    RP              shift and go to state 79
+    BOR             shift and go to state 41
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+
+state 55
+
+    (39) expr -> expr AND . expr
+    (38) expr -> . expr OR expr
+    (39) expr -> . expr AND expr
+    (40) expr -> . aexpr EQ aexpr
+    (41) expr -> . aexpr NEQ aexpr
+    (42) expr -> . aexpr GT aexpr
+    (43) expr -> . aexpr GET aexpr
+    (44) expr -> . aexpr LT aexpr
+    (45) expr -> . aexpr LET aexpr
+    (46) expr -> . NOT expr
+    (47) expr -> . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    NOT             shift and go to state 30
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    expr                           shift and go to state 80
+    aexpr                          shift and go to state 22
+
+state 56
+
+    (13) while -> WHILE LP expr RP . COLON block END
+
+    COLON           shift and go to state 81
+
+
+state 57
+
+    (38) expr -> expr OR . expr
+    (38) expr -> . expr OR expr
+    (39) expr -> . expr AND expr
+    (40) expr -> . aexpr EQ aexpr
+    (41) expr -> . aexpr NEQ aexpr
+    (42) expr -> . aexpr GT aexpr
+    (43) expr -> . aexpr GET aexpr
+    (44) expr -> . aexpr LT aexpr
+    (45) expr -> . aexpr LET aexpr
+    (46) expr -> . NOT expr
+    (47) expr -> . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    NOT             shift and go to state 30
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    expr                           shift and go to state 82
+    aexpr                          shift and go to state 22
+
+state 58
+
+    (46) expr -> NOT expr .
+    (38) expr -> expr . OR expr
+    (39) expr -> expr . AND expr
+
+    OR              reduce using rule 46 (expr -> NOT expr .)
+    AND             reduce using rule 46 (expr -> NOT expr .)
+    SEMICOLON       reduce using rule 46 (expr -> NOT expr .)
+    RP              reduce using rule 46 (expr -> NOT expr .)
+
+  ! OR              [ shift and go to state 57 ]
+  ! AND             [ shift and go to state 55 ]
+
+
+state 59
+
+    (33) aexpr -> TYPE LP . aexpr RP
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    aexpr                          shift and go to state 83
+
+state 60
+
+    (14) if -> IF LP expr RP . COLON block elif else END
+
+    COLON           shift and go to state 84
+
+
+state 61
+
+    (7) declare -> TYPE NAME ASSIGN expr .
+    (38) expr -> expr . OR expr
+    (39) expr -> expr . AND expr
+
+    SEMICOLON       reduce using rule 7 (declare -> TYPE NAME ASSIGN expr .)
+    OR              shift and go to state 57
+    AND             shift and go to state 55
+
+
+state 62
+
+    (42) expr -> aexpr GT aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    OR              reduce using rule 42 (expr -> aexpr GT aexpr .)
+    AND             reduce using rule 42 (expr -> aexpr GT aexpr .)
+    SEMICOLON       reduce using rule 42 (expr -> aexpr GT aexpr .)
+    RP              reduce using rule 42 (expr -> aexpr GT aexpr .)
+    BOR             shift and go to state 41
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+
+state 63
+
+    (28) aexpr -> aexpr DIVIDES aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    BXOR            reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    BAND            reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    BRSHIFT         reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    BLSHIFT         reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    PLUS            reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    MINUS           reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    TIMES           reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    MODS            reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    DIVIDES         reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    RP              reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    OR              reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    AND             reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    SEMICOLON       reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    EQ              reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    NEQ             reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    GT              reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    GET             reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    LT              reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    LET             reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .)
+    EXP             shift and go to state 38
+
+  ! EXP             [ reduce using rule 28 (aexpr -> aexpr DIVIDES aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 48 ]
+  ! TIMES           [ shift and go to state 50 ]
+  ! MODS            [ shift and go to state 46 ]
+  ! DIVIDES         [ shift and go to state 37 ]
+
+
+state 64
+
+    (29) aexpr -> aexpr EXP aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    BXOR            reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    BAND            reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    BRSHIFT         reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    BLSHIFT         reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    PLUS            reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    MINUS           reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    TIMES           reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    MODS            reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    DIVIDES         reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    EXP             reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    RP              reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    OR              reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    AND             reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    SEMICOLON       reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    EQ              reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    NEQ             reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    GT              reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    GET             reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    LT              reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+    LET             reduce using rule 29 (aexpr -> aexpr EXP aexpr .)
+
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 48 ]
+  ! TIMES           [ shift and go to state 50 ]
+  ! MODS            [ shift and go to state 46 ]
+  ! DIVIDES         [ shift and go to state 37 ]
+  ! EXP             [ shift and go to state 38 ]
+
+
+state 65
+
+    (43) expr -> aexpr GET aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    OR              reduce using rule 43 (expr -> aexpr GET aexpr .)
+    AND             reduce using rule 43 (expr -> aexpr GET aexpr .)
+    SEMICOLON       reduce using rule 43 (expr -> aexpr GET aexpr .)
+    RP              reduce using rule 43 (expr -> aexpr GET aexpr .)
+    BOR             shift and go to state 41
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+
+state 66
+
+    (20) aexpr -> aexpr BXOR aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    BXOR            reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    RP              reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    OR              reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    AND             reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    SEMICOLON       reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    EQ              reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    NEQ             reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    GT              reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    GET             reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    LT              reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    LET             reduce using rule 20 (aexpr -> aexpr BXOR aexpr .)
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+  ! BAND            [ reduce using rule 20 (aexpr -> aexpr BXOR aexpr .) ]
+  ! BRSHIFT         [ reduce using rule 20 (aexpr -> aexpr BXOR aexpr .) ]
+  ! BLSHIFT         [ reduce using rule 20 (aexpr -> aexpr BXOR aexpr .) ]
+  ! PLUS            [ reduce using rule 20 (aexpr -> aexpr BXOR aexpr .) ]
+  ! MINUS           [ reduce using rule 20 (aexpr -> aexpr BXOR aexpr .) ]
+  ! TIMES           [ reduce using rule 20 (aexpr -> aexpr BXOR aexpr .) ]
+  ! MODS            [ reduce using rule 20 (aexpr -> aexpr BXOR aexpr .) ]
+  ! DIVIDES         [ reduce using rule 20 (aexpr -> aexpr BXOR aexpr .) ]
+  ! EXP             [ reduce using rule 20 (aexpr -> aexpr BXOR aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+
+
+state 67
+
+    (19) aexpr -> aexpr BOR aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    RP              reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    OR              reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    AND             reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    SEMICOLON       reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    EQ              reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    NEQ             reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    GT              reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    GET             reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    LT              reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    LET             reduce using rule 19 (aexpr -> aexpr BOR aexpr .)
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+  ! BXOR            [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! BAND            [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! BRSHIFT         [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! BLSHIFT         [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! PLUS            [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! MINUS           [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! TIMES           [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! MODS            [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! DIVIDES         [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! EXP             [ reduce using rule 19 (aexpr -> aexpr BOR aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+
+
+state 68
+
+    (23) aexpr -> aexpr BLSHIFT aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    BXOR            reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    BAND            reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    BRSHIFT         reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    BLSHIFT         reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    RP              reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    OR              reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    AND             reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    SEMICOLON       reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    EQ              reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    NEQ             reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    GT              reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    GET             reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    LT              reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    LET             reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+  ! PLUS            [ reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .) ]
+  ! MINUS           [ reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .) ]
+  ! TIMES           [ reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .) ]
+  ! MODS            [ reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .) ]
+  ! DIVIDES         [ reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .) ]
+  ! EXP             [ reduce using rule 23 (aexpr -> aexpr BLSHIFT aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+
+
+state 69
+
+    (22) aexpr -> aexpr BRSHIFT aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    BXOR            reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    BAND            reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    BRSHIFT         reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    BLSHIFT         reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    RP              reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    OR              reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    AND             reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    SEMICOLON       reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    EQ              reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    NEQ             reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    GT              reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    GET             reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    LT              reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    LET             reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+  ! PLUS            [ reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .) ]
+  ! MINUS           [ reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .) ]
+  ! TIMES           [ reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .) ]
+  ! MODS            [ reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .) ]
+  ! DIVIDES         [ reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .) ]
+  ! EXP             [ reduce using rule 22 (aexpr -> aexpr BRSHIFT aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+
+
+state 70
+
+    (21) aexpr -> aexpr BAND aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    BXOR            reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    BAND            reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    RP              reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    OR              reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    AND             reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    SEMICOLON       reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    EQ              reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    NEQ             reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    GT              reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    GET             reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    LT              reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    LET             reduce using rule 21 (aexpr -> aexpr BAND aexpr .)
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+  ! BRSHIFT         [ reduce using rule 21 (aexpr -> aexpr BAND aexpr .) ]
+  ! BLSHIFT         [ reduce using rule 21 (aexpr -> aexpr BAND aexpr .) ]
+  ! PLUS            [ reduce using rule 21 (aexpr -> aexpr BAND aexpr .) ]
+  ! MINUS           [ reduce using rule 21 (aexpr -> aexpr BAND aexpr .) ]
+  ! TIMES           [ reduce using rule 21 (aexpr -> aexpr BAND aexpr .) ]
+  ! MODS            [ reduce using rule 21 (aexpr -> aexpr BAND aexpr .) ]
+  ! DIVIDES         [ reduce using rule 21 (aexpr -> aexpr BAND aexpr .) ]
+  ! EXP             [ reduce using rule 21 (aexpr -> aexpr BAND aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+
+
+state 71
+
+    (44) expr -> aexpr LT aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    OR              reduce using rule 44 (expr -> aexpr LT aexpr .)
+    AND             reduce using rule 44 (expr -> aexpr LT aexpr .)
+    SEMICOLON       reduce using rule 44 (expr -> aexpr LT aexpr .)
+    RP              reduce using rule 44 (expr -> aexpr LT aexpr .)
+    BOR             shift and go to state 41
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+
+state 72
+
+    (27) aexpr -> aexpr MODS aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    BXOR            reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    BAND            reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    BRSHIFT         reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    BLSHIFT         reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    PLUS            reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    MINUS           reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    TIMES           reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    MODS            reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    DIVIDES         reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    RP              reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    OR              reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    AND             reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    SEMICOLON       reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    EQ              reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    NEQ             reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    GT              reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    GET             reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    LT              reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    LET             reduce using rule 27 (aexpr -> aexpr MODS aexpr .)
+    EXP             shift and go to state 38
+
+  ! EXP             [ reduce using rule 27 (aexpr -> aexpr MODS aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 48 ]
+  ! TIMES           [ shift and go to state 50 ]
+  ! MODS            [ shift and go to state 46 ]
+  ! DIVIDES         [ shift and go to state 37 ]
+
+
+state 73
+
+    (45) expr -> aexpr LET aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    OR              reduce using rule 45 (expr -> aexpr LET aexpr .)
+    AND             reduce using rule 45 (expr -> aexpr LET aexpr .)
+    SEMICOLON       reduce using rule 45 (expr -> aexpr LET aexpr .)
+    RP              reduce using rule 45 (expr -> aexpr LET aexpr .)
+    BOR             shift and go to state 41
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+
+state 74
+
+    (25) aexpr -> aexpr MINUS aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    BXOR            reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    BAND            reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    BRSHIFT         reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    BLSHIFT         reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    PLUS            reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    MINUS           reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    RP              reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    OR              reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    AND             reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    SEMICOLON       reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    EQ              reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    NEQ             reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    GT              reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    GET             reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    LT              reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    LET             reduce using rule 25 (aexpr -> aexpr MINUS aexpr .)
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+  ! TIMES           [ reduce using rule 25 (aexpr -> aexpr MINUS aexpr .) ]
+  ! MODS            [ reduce using rule 25 (aexpr -> aexpr MINUS aexpr .) ]
+  ! DIVIDES         [ reduce using rule 25 (aexpr -> aexpr MINUS aexpr .) ]
+  ! EXP             [ reduce using rule 25 (aexpr -> aexpr MINUS aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 48 ]
+
+
+state 75
+
+    (24) aexpr -> aexpr PLUS aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    BXOR            reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    BAND            reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    BRSHIFT         reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    BLSHIFT         reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    PLUS            reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    MINUS           reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    RP              reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    OR              reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    AND             reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    SEMICOLON       reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    EQ              reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    NEQ             reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    GT              reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    GET             reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    LT              reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    LET             reduce using rule 24 (aexpr -> aexpr PLUS aexpr .)
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+  ! TIMES           [ reduce using rule 24 (aexpr -> aexpr PLUS aexpr .) ]
+  ! MODS            [ reduce using rule 24 (aexpr -> aexpr PLUS aexpr .) ]
+  ! DIVIDES         [ reduce using rule 24 (aexpr -> aexpr PLUS aexpr .) ]
+  ! EXP             [ reduce using rule 24 (aexpr -> aexpr PLUS aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 48 ]
+
+
+state 76
+
+    (26) aexpr -> aexpr TIMES aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    BOR             reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    BXOR            reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    BAND            reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    BRSHIFT         reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    BLSHIFT         reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    PLUS            reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    MINUS           reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    TIMES           reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    MODS            reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    DIVIDES         reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    RP              reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    OR              reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    AND             reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    SEMICOLON       reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    EQ              reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    NEQ             reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    GT              reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    GET             reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    LT              reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    LET             reduce using rule 26 (aexpr -> aexpr TIMES aexpr .)
+    EXP             shift and go to state 38
+
+  ! EXP             [ reduce using rule 26 (aexpr -> aexpr TIMES aexpr .) ]
+  ! BOR             [ shift and go to state 41 ]
+  ! BXOR            [ shift and go to state 40 ]
+  ! BAND            [ shift and go to state 44 ]
+  ! BRSHIFT         [ shift and go to state 43 ]
+  ! BLSHIFT         [ shift and go to state 42 ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 48 ]
+  ! TIMES           [ shift and go to state 50 ]
+  ! MODS            [ shift and go to state 46 ]
+  ! DIVIDES         [ shift and go to state 37 ]
+
+
+state 77
+
+    (40) expr -> aexpr EQ aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    OR              reduce using rule 40 (expr -> aexpr EQ aexpr .)
+    AND             reduce using rule 40 (expr -> aexpr EQ aexpr .)
+    SEMICOLON       reduce using rule 40 (expr -> aexpr EQ aexpr .)
+    RP              reduce using rule 40 (expr -> aexpr EQ aexpr .)
+    BOR             shift and go to state 41
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+
+state 78
+
+    (41) expr -> aexpr NEQ aexpr .
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    OR              reduce using rule 41 (expr -> aexpr NEQ aexpr .)
+    AND             reduce using rule 41 (expr -> aexpr NEQ aexpr .)
+    SEMICOLON       reduce using rule 41 (expr -> aexpr NEQ aexpr .)
+    RP              reduce using rule 41 (expr -> aexpr NEQ aexpr .)
+    BOR             shift and go to state 41
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+
+state 79
+
+    (32) aexpr -> LP aexpr RP .
+
+    BOR             reduce using rule 32 (aexpr -> LP aexpr RP .)
+    BXOR            reduce using rule 32 (aexpr -> LP aexpr RP .)
+    BAND            reduce using rule 32 (aexpr -> LP aexpr RP .)
+    BRSHIFT         reduce using rule 32 (aexpr -> LP aexpr RP .)
+    BLSHIFT         reduce using rule 32 (aexpr -> LP aexpr RP .)
+    PLUS            reduce using rule 32 (aexpr -> LP aexpr RP .)
+    MINUS           reduce using rule 32 (aexpr -> LP aexpr RP .)
+    TIMES           reduce using rule 32 (aexpr -> LP aexpr RP .)
+    MODS            reduce using rule 32 (aexpr -> LP aexpr RP .)
+    DIVIDES         reduce using rule 32 (aexpr -> LP aexpr RP .)
+    EXP             reduce using rule 32 (aexpr -> LP aexpr RP .)
+    RP              reduce using rule 32 (aexpr -> LP aexpr RP .)
+    OR              reduce using rule 32 (aexpr -> LP aexpr RP .)
+    AND             reduce using rule 32 (aexpr -> LP aexpr RP .)
+    SEMICOLON       reduce using rule 32 (aexpr -> LP aexpr RP .)
+    EQ              reduce using rule 32 (aexpr -> LP aexpr RP .)
+    NEQ             reduce using rule 32 (aexpr -> LP aexpr RP .)
+    GT              reduce using rule 32 (aexpr -> LP aexpr RP .)
+    GET             reduce using rule 32 (aexpr -> LP aexpr RP .)
+    LT              reduce using rule 32 (aexpr -> LP aexpr RP .)
+    LET             reduce using rule 32 (aexpr -> LP aexpr RP .)
+
+
+state 80
+
+    (39) expr -> expr AND expr .
+    (38) expr -> expr . OR expr
+    (39) expr -> expr . AND expr
+
+    OR              reduce using rule 39 (expr -> expr AND expr .)
+    AND             reduce using rule 39 (expr -> expr AND expr .)
+    SEMICOLON       reduce using rule 39 (expr -> expr AND expr .)
+    RP              reduce using rule 39 (expr -> expr AND expr .)
+
+  ! OR              [ shift and go to state 57 ]
+  ! AND             [ shift and go to state 55 ]
+
+
+state 81
+
+    (13) while -> WHILE LP expr RP COLON . block END
+    (1) block -> . block sentence
+    (2) block -> .
+
+    END             reduce using rule 2 (block -> .)
+    TYPE            reduce using rule 2 (block -> .)
+    NAME            reduce using rule 2 (block -> .)
+    BREAK           reduce using rule 2 (block -> .)
+    CONTINUE        reduce using rule 2 (block -> .)
+    WHILE           reduce using rule 2 (block -> .)
+    IF              reduce using rule 2 (block -> .)
+
+    block                          shift and go to state 85
+
+state 82
+
+    (38) expr -> expr OR expr .
+    (38) expr -> expr . OR expr
+    (39) expr -> expr . AND expr
+
+    OR              reduce using rule 38 (expr -> expr OR expr .)
+    SEMICOLON       reduce using rule 38 (expr -> expr OR expr .)
+    RP              reduce using rule 38 (expr -> expr OR expr .)
+    AND             shift and go to state 55
+
+  ! AND             [ reduce using rule 38 (expr -> expr OR expr .) ]
+  ! OR              [ shift and go to state 57 ]
+
+
+state 83
+
+    (33) aexpr -> TYPE LP aexpr . RP
+    (19) aexpr -> aexpr . BOR aexpr
+    (20) aexpr -> aexpr . BXOR aexpr
+    (21) aexpr -> aexpr . BAND aexpr
+    (22) aexpr -> aexpr . BRSHIFT aexpr
+    (23) aexpr -> aexpr . BLSHIFT aexpr
+    (24) aexpr -> aexpr . PLUS aexpr
+    (25) aexpr -> aexpr . MINUS aexpr
+    (26) aexpr -> aexpr . TIMES aexpr
+    (27) aexpr -> aexpr . MODS aexpr
+    (28) aexpr -> aexpr . DIVIDES aexpr
+    (29) aexpr -> aexpr . EXP aexpr
+
+    RP              shift and go to state 86
+    BOR             shift and go to state 41
+    BXOR            shift and go to state 40
+    BAND            shift and go to state 44
+    BRSHIFT         shift and go to state 43
+    BLSHIFT         shift and go to state 42
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 48
+    TIMES           shift and go to state 50
+    MODS            shift and go to state 46
+    DIVIDES         shift and go to state 37
+    EXP             shift and go to state 38
+
+
+state 84
+
+    (14) if -> IF LP expr RP COLON . block elif else END
+    (1) block -> . block sentence
+    (2) block -> .
+
+    TYPE            reduce using rule 2 (block -> .)
+    NAME            reduce using rule 2 (block -> .)
+    BREAK           reduce using rule 2 (block -> .)
+    CONTINUE        reduce using rule 2 (block -> .)
+    WHILE           reduce using rule 2 (block -> .)
+    IF              reduce using rule 2 (block -> .)
+    ELIF            reduce using rule 2 (block -> .)
+    ELSE            reduce using rule 2 (block -> .)
+    END             reduce using rule 2 (block -> .)
+
+    block                          shift and go to state 87
+
+state 85
+
+    (13) while -> WHILE LP expr RP COLON block . END
+    (1) block -> block . sentence
+    (3) sentence -> . declare SEMICOLON
+    (4) sentence -> . assign SEMICOLON
+    (5) sentence -> . control SEMICOLON
+    (6) declare -> . TYPE NAME
+    (7) declare -> . TYPE NAME ASSIGN expr
+    (8) assign -> . NAME ASSIGN expr
+    (9) control -> . while
+    (10) control -> . if
+    (11) control -> . BREAK
+    (12) control -> . CONTINUE
+    (13) while -> . WHILE LP expr RP COLON block END
+    (14) if -> . IF LP expr RP COLON block elif else END
+
+    END             shift and go to state 88
+    TYPE            shift and go to state 12
+    NAME            shift and go to state 7
+    BREAK           shift and go to state 9
+    CONTINUE        shift and go to state 11
+    WHILE           shift and go to state 4
+    IF              shift and go to state 6
+
+    control                        shift and go to state 2
+    sentence                       shift and go to state 3
+    declare                        shift and go to state 13
+    while                          shift and go to state 10
+    assign                         shift and go to state 8
+    if                             shift and go to state 5
+
+state 86
+
+    (33) aexpr -> TYPE LP aexpr RP .
+
+    BOR             reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    BXOR            reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    BAND            reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    BRSHIFT         reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    BLSHIFT         reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    PLUS            reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    MINUS           reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    TIMES           reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    MODS            reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    DIVIDES         reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    EXP             reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    RP              reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    OR              reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    AND             reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    SEMICOLON       reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    EQ              reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    NEQ             reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    GT              reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    GET             reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    LT              reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+    LET             reduce using rule 33 (aexpr -> TYPE LP aexpr RP .)
+
+
+state 87
+
+    (14) if -> IF LP expr RP COLON block . elif else END
+    (1) block -> block . sentence
+    (15) elif -> . elif ELIF LP expr RP COLON block
+    (16) elif -> .
+    (3) sentence -> . declare SEMICOLON
+    (4) sentence -> . assign SEMICOLON
+    (5) sentence -> . control SEMICOLON
+    (6) declare -> . TYPE NAME
+    (7) declare -> . TYPE NAME ASSIGN expr
+    (8) assign -> . NAME ASSIGN expr
+    (9) control -> . while
+    (10) control -> . if
+    (11) control -> . BREAK
+    (12) control -> . CONTINUE
+    (13) while -> . WHILE LP expr RP COLON block END
+    (14) if -> . IF LP expr RP COLON block elif else END
+
+    ELIF            reduce using rule 16 (elif -> .)
+    ELSE            reduce using rule 16 (elif -> .)
+    END             reduce using rule 16 (elif -> .)
+    TYPE            shift and go to state 12
+    NAME            shift and go to state 7
+    BREAK           shift and go to state 9
+    CONTINUE        shift and go to state 11
+    WHILE           shift and go to state 4
+    IF              shift and go to state 6
+
+    control                        shift and go to state 2
+    elif                           shift and go to state 89
+    assign                         shift and go to state 8
+    sentence                       shift and go to state 3
+    while                          shift and go to state 10
+    declare                        shift and go to state 13
+    if                             shift and go to state 5
+
+state 88
+
+    (13) while -> WHILE LP expr RP COLON block END .
+
+    SEMICOLON       reduce using rule 13 (while -> WHILE LP expr RP COLON block END .)
+
+
+state 89
+
+    (14) if -> IF LP expr RP COLON block elif . else END
+    (15) elif -> elif . ELIF LP expr RP COLON block
+    (17) else -> . ELSE COLON block
+    (18) else -> .
+
+    ELIF            shift and go to state 90
+    ELSE            shift and go to state 92
+    END             reduce using rule 18 (else -> .)
+
+    else                           shift and go to state 91
+
+state 90
+
+    (15) elif -> elif ELIF . LP expr RP COLON block
+
+    LP              shift and go to state 93
+
+
+state 91
+
+    (14) if -> IF LP expr RP COLON block elif else . END
+
+    END             shift and go to state 94
+
+
+state 92
+
+    (17) else -> ELSE . COLON block
+
+    COLON           shift and go to state 95
+
+
+state 93
+
+    (15) elif -> elif ELIF LP . expr RP COLON block
+    (38) expr -> . expr OR expr
+    (39) expr -> . expr AND expr
+    (40) expr -> . aexpr EQ aexpr
+    (41) expr -> . aexpr NEQ aexpr
+    (42) expr -> . aexpr GT aexpr
+    (43) expr -> . aexpr GET aexpr
+    (44) expr -> . aexpr LT aexpr
+    (45) expr -> . aexpr LET aexpr
+    (46) expr -> . NOT expr
+    (47) expr -> . aexpr
+    (19) aexpr -> . aexpr BOR aexpr
+    (20) aexpr -> . aexpr BXOR aexpr
+    (21) aexpr -> . aexpr BAND aexpr
+    (22) aexpr -> . aexpr BRSHIFT aexpr
+    (23) aexpr -> . aexpr BLSHIFT aexpr
+    (24) aexpr -> . aexpr PLUS aexpr
+    (25) aexpr -> . aexpr MINUS aexpr
+    (26) aexpr -> . aexpr TIMES aexpr
+    (27) aexpr -> . aexpr MODS aexpr
+    (28) aexpr -> . aexpr DIVIDES aexpr
+    (29) aexpr -> . aexpr EXP aexpr
+    (30) aexpr -> . MINUS aexpr
+    (31) aexpr -> . BNOT aexpr
+    (32) aexpr -> . LP aexpr RP
+    (33) aexpr -> . TYPE LP aexpr RP
+    (34) aexpr -> . INT
+    (35) aexpr -> . FLOAT
+    (36) aexpr -> . BOOL
+    (37) aexpr -> . NAME
+
+    NOT             shift and go to state 30
+    MINUS           shift and go to state 23
+    BNOT            shift and go to state 21
+    LP              shift and go to state 24
+    TYPE            shift and go to state 31
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 29
+    BOOL            shift and go to state 25
+    NAME            shift and go to state 26
+
+    expr                           shift and go to state 96
+    aexpr                          shift and go to state 22
+
+state 94
+
+    (14) if -> IF LP expr RP COLON block elif else END .
+
+    SEMICOLON       reduce using rule 14 (if -> IF LP expr RP COLON block elif else END .)
+
+
+state 95
+
+    (17) else -> ELSE COLON . block
+    (1) block -> . block sentence
+    (2) block -> .
+
+    TYPE            reduce using rule 2 (block -> .)
+    NAME            reduce using rule 2 (block -> .)
+    BREAK           reduce using rule 2 (block -> .)
+    CONTINUE        reduce using rule 2 (block -> .)
+    WHILE           reduce using rule 2 (block -> .)
+    IF              reduce using rule 2 (block -> .)
+    END             reduce using rule 2 (block -> .)
+
+    block                          shift and go to state 97
+
+state 96
+
+    (15) elif -> elif ELIF LP expr . RP COLON block
+    (38) expr -> expr . OR expr
+    (39) expr -> expr . AND expr
+
+    RP              shift and go to state 98
+    OR              shift and go to state 57
+    AND             shift and go to state 55
+
+
+state 97
+
+    (17) else -> ELSE COLON block .
+    (1) block -> block . sentence
+    (3) sentence -> . declare SEMICOLON
+    (4) sentence -> . assign SEMICOLON
+    (5) sentence -> . control SEMICOLON
+    (6) declare -> . TYPE NAME
+    (7) declare -> . TYPE NAME ASSIGN expr
+    (8) assign -> . NAME ASSIGN expr
+    (9) control -> . while
+    (10) control -> . if
+    (11) control -> . BREAK
+    (12) control -> . CONTINUE
+    (13) while -> . WHILE LP expr RP COLON block END
+    (14) if -> . IF LP expr RP COLON block elif else END
+
+    END             reduce using rule 17 (else -> ELSE COLON block .)
+    TYPE            shift and go to state 12
+    NAME            shift and go to state 7
+    BREAK           shift and go to state 9
+    CONTINUE        shift and go to state 11
+    WHILE           shift and go to state 4
+    IF              shift and go to state 6
+
+    control                        shift and go to state 2
+    sentence                       shift and go to state 3
+    declare                        shift and go to state 13
+    while                          shift and go to state 10
+    assign                         shift and go to state 8
+    if                             shift and go to state 5
+
+state 98
+
+    (15) elif -> elif ELIF LP expr RP . COLON block
+
+    COLON           shift and go to state 99
+
+
+state 99
+
+    (15) elif -> elif ELIF LP expr RP COLON . block
+    (1) block -> . block sentence
+    (2) block -> .
+
+    TYPE            reduce using rule 2 (block -> .)
+    NAME            reduce using rule 2 (block -> .)
+    BREAK           reduce using rule 2 (block -> .)
+    CONTINUE        reduce using rule 2 (block -> .)
+    WHILE           reduce using rule 2 (block -> .)
+    IF              reduce using rule 2 (block -> .)
+    ELIF            reduce using rule 2 (block -> .)
+    ELSE            reduce using rule 2 (block -> .)
+    END             reduce using rule 2 (block -> .)
+
+    block                          shift and go to state 100
+
+state 100
+
+    (15) elif -> elif ELIF LP expr RP COLON block .
+    (1) block -> block . sentence
+    (3) sentence -> . declare SEMICOLON
+    (4) sentence -> . assign SEMICOLON
+    (5) sentence -> . control SEMICOLON
+    (6) declare -> . TYPE NAME
+    (7) declare -> . TYPE NAME ASSIGN expr
+    (8) assign -> . NAME ASSIGN expr
+    (9) control -> . while
+    (10) control -> . if
+    (11) control -> . BREAK
+    (12) control -> . CONTINUE
+    (13) while -> . WHILE LP expr RP COLON block END
+    (14) if -> . IF LP expr RP COLON block elif else END
+
+    ELIF            reduce using rule 15 (elif -> elif ELIF LP expr RP COLON block .)
+    ELSE            reduce using rule 15 (elif -> elif ELIF LP expr RP COLON block .)
+    END             reduce using rule 15 (elif -> elif ELIF LP expr RP COLON block .)
+    TYPE            shift and go to state 12
+    NAME            shift and go to state 7
+    BREAK           shift and go to state 9
+    CONTINUE        shift and go to state 11
+    WHILE           shift and go to state 4
+    IF              shift and go to state 6
+
+    control                        shift and go to state 2
+    sentence                       shift and go to state 3
+    declare                        shift and go to state 13
+    while                          shift and go to state 10
+    assign                         shift and go to state 8
+    if                             shift and go to state 5
