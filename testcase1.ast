@@ -1,0 +1,60 @@
+[
+  {
+    "name": "a",
+    "sentence": "declare",
+    "type": "float"
+  },
+  {
+    "name": "a",
+    "sentence": "read"
+  },
+  {
+    "expr": {
+      "e1": {
+        "type": "NAME",
+        "value": "a"
+      },
+      "e2": {
+        "type": "INT",
+        "value": "2"
+      },
+      "operator": "**"
+    },
+    "sentence": "assign",
+    "type": "a"
+  },
+  {
+    "expr": {
+      "e1": {
+        "e1": "int",
+        "e2": {
+          "e1": {
+            "type": "NAME",
+            "value": "a"
+          },
+          "e2": {
+            "type": "INT",
+            "value": "1"
+          },
+          "operator": "+"
+        },
+        "operator": "cast"
+      },
+      "e2": {
+        "type": "INT",
+        "value": "2"
+      },
+      "operator": ">>"
+    },
+    "name": "b",
+    "sentence": "declare_init",
+    "type": "int"
+  },
+  {
+    "expr": {
+      "type": "NAME",
+      "value": "b"
+    },
+    "sentence": "write"
+  }
+]

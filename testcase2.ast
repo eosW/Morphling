@@ -1,0 +1,171 @@
+[
+  {
+    "name": "a",
+    "sentence": "declare",
+    "type": "int"
+  },
+  {
+    "name": "a",
+    "sentence": "read"
+  },
+  {
+    "cases": [
+      {
+        "block": [
+          {
+            "expr": {
+              "e1": {
+                "type": "NAME",
+                "value": "a"
+              },
+              "operator": "-"
+            },
+            "sentence": "assign",
+            "type": "a"
+          }
+        ],
+        "condition": {
+          "e1": {
+            "type": "NAME",
+            "value": "a"
+          },
+          "e2": {
+            "type": "INT",
+            "value": "0"
+          },
+          "operator": "<"
+        }
+      },
+      {
+        "block": [
+          {
+            "block": [
+              {
+                "expr": {
+                  "e1": {
+                    "type": "NAME",
+                    "value": "a"
+                  },
+                  "e2": {
+                    "type": "INT",
+                    "value": "2"
+                  },
+                  "operator": "/"
+                },
+                "sentence": "assign",
+                "type": "a"
+              }
+            ],
+            "expr": {
+              "e1": {
+                "type": "NAME",
+                "value": "a"
+              },
+              "e2": {
+                "type": "INT",
+                "value": "5"
+              },
+              "operator": ">"
+            },
+            "sentence": "while"
+          }
+        ],
+        "condition": {
+          "e1": {
+            "type": "NAME",
+            "value": "a"
+          },
+          "e2": {
+            "type": "INT",
+            "value": "100"
+          },
+          "operator": ">"
+        }
+      },
+      {
+        "block": [
+          {
+            "block": [
+              {
+                "expr": {
+                  "e1": {
+                    "type": "NAME",
+                    "value": "a"
+                  },
+                  "e2": {
+                    "type": "INT",
+                    "value": "1"
+                  },
+                  "operator": "-"
+                },
+                "sentence": "assign",
+                "type": "a"
+              },
+              {
+                "cases": [
+                  {
+                    "block": [
+                      {
+                        "sentence": "break"
+                      }
+                    ],
+                    "condition": {
+                      "e1": {
+                        "e1": {
+                          "e1": {
+                            "type": "NAME",
+                            "value": "a"
+                          },
+                          "e2": {
+                            "type": "INT",
+                            "value": "3"
+                          },
+                          "operator": "%"
+                        },
+                        "e2": {
+                          "type": "INT",
+                          "value": "0"
+                        },
+                        "operator": "=="
+                      },
+                      "e2": {
+                        "e1": {
+                          "type": "NAME",
+                          "value": "a"
+                        },
+                        "e2": {
+                          "type": "INT",
+                          "value": "0"
+                        },
+                        "operator": "<"
+                      },
+                      "operator": "&&"
+                    }
+                  }
+                ],
+                "sentence": "if"
+              }
+            ],
+            "expr": {
+              "type": "BOOL",
+              "value": "true"
+            },
+            "sentence": "while"
+          }
+        ],
+        "condition": {
+          "type": "BOOL",
+          "value": "true"
+        }
+      }
+    ],
+    "sentence": "if"
+  },
+  {
+    "expr": {
+      "type": "NAME",
+      "value": "a"
+    },
+    "sentence": "write"
+  }
+]
