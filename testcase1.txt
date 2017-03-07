@@ -1,0 +1,5 @@
+float a;
+read a;
+a = a**2;
+int b = int(a+1)>>2;
+write b;
