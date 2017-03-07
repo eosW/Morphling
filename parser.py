@@ -104,6 +104,8 @@ def p_declare(p):
     """
     declare : TYPE NAME
     """
+    if p[2] in typetable:
+        print("ERROR: line{:d}: duplicate name".format(p.slice[1].lineno))
     typetable[p[2]] = p[1]
     p[0] = {'sentence':'declare', 'type':p[1], 'name':p[2]}
 
@@ -111,6 +113,8 @@ def p_declare2(p):
     """
     declare : TYPE NAME ASSIGN expr
     """
+    if p[2] in typetable:
+        print("ERROR: line{:d}: duplicate name".format(p.slice[1].lineno))
     if p[4]['type'] != p[1]:
         print("ERROR: line{:d}: type mismatch".format(p.slice[1].lineno))
         raise SyntaxError
