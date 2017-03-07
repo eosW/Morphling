@@ -6,7 +6,8 @@
   },
   {
     "name": "a",
-    "sentence": "read"
+    "sentence": "read",
+    "type": "float"
   },
   {
     "expr": {

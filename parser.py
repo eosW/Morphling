@@ -310,7 +310,8 @@ def p_read(p):
     """
     read : READ NAME
     """
-    p[0] = {'sentence':'read', 'name':p[2]}
+    rtype = typetable[p[2]]
+    p[0] = {'sentence':'read', 'name':p[2], 'type':rtype}
 
 def p_write(p):
     """
