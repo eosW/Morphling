@@ -269,7 +269,7 @@ def p_aexpr_n(p):
             print("ERROR: line{:d}: undecleared variable {:s}".format(p.slice[1].lineno,p[1]))
             raise SyntaxError
         restype = typetable[p[1]]
-    p[0] = {'type':p.slice[1].type.lower(),'value':p[1]}
+    p[0] = {'type':restype,'value':p[1]}
 
 def p_expr_b_b(p):
     """
