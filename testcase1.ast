@@ -12,14 +12,15 @@
   {
     "expr": {
       "e1": {
-        "type": "NAME",
+        "type": "name",
         "value": "a"
       },
       "e2": {
-        "type": "INT",
+        "type": "int",
         "value": "2"
       },
-      "operator": "**"
+      "operator": "**",
+      "type": "float"
     },
     "sentence": "assign",
     "type": "a"
@@ -30,22 +31,25 @@
         "e1": "int",
         "e2": {
           "e1": {
-            "type": "NAME",
+            "type": "name",
             "value": "a"
           },
           "e2": {
-            "type": "INT",
+            "type": "int",
             "value": "1"
           },
-          "operator": "+"
+          "operator": "+",
+          "type": "float"
         },
-        "operator": "cast"
+        "operator": "cast",
+        "type": "int"
       },
       "e2": {
-        "type": "INT",
+        "type": "int",
         "value": "2"
       },
-      "operator": ">>"
+      "operator": ">>",
+      "type": "int"
     },
     "name": "b",
     "sentence": "declare_init",
@@ -53,7 +57,7 @@
   },
   {
     "expr": {
-      "type": "NAME",
+      "type": "name",
       "value": "b"
     },
     "sentence": "write"

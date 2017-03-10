@@ -26,7 +26,7 @@ def genblock(block,target,ind):
             expr = sentence['expr']
             target.write("{:s}{:s} {:s} = {:s};\n".format(indstr,{'int':'int','float':'double','bool':'boolean'}[dtype],name,expreval(expr)))
         if stype == "assign":
-            name = sentence['type']
+            name = sentence['name']
             expr = sentence['expr']
             target.write("{:s}{:s} = {:s};\n".format(indstr,name,expreval(expr)))
         if stype == "break":
