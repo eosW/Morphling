@@ -58,7 +58,7 @@ def genblock(block,target,ind):
 
 
 def expreval(expr):
-    if "type" in expr:
+    if "value" in expr:
         value = expr['value']
         return value
     operator = expr['operator']
