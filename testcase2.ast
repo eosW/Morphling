@@ -16,25 +16,27 @@
           {
             "expr": {
               "e1": {
-                "type": "NAME",
+                "type": "int",
                 "value": "a"
               },
-              "operator": "-"
+              "operator": "-",
+              "type": "int"
             },
-            "sentence": "assign",
-            "type": "a"
+            "name": "a",
+            "sentence": "assign"
           }
         ],
         "condition": {
           "e1": {
-            "type": "NAME",
+            "type": "int",
             "value": "a"
           },
           "e2": {
-            "type": "INT",
+            "type": "int",
             "value": "0"
           },
-          "operator": "<"
+          "operator": "<",
+          "type": "bool"
         }
       },
       {
@@ -44,43 +46,46 @@
               {
                 "expr": {
                   "e1": {
-                    "type": "NAME",
+                    "type": "int",
                     "value": "a"
                   },
                   "e2": {
-                    "type": "INT",
+                    "type": "int",
                     "value": "2"
                   },
-                  "operator": "/"
+                  "operator": "/",
+                  "type": "int"
                 },
-                "sentence": "assign",
-                "type": "a"
+                "name": "a",
+                "sentence": "assign"
               }
             ],
             "expr": {
               "e1": {
-                "type": "NAME",
+                "type": "int",
                 "value": "a"
               },
               "e2": {
-                "type": "INT",
+                "type": "int",
                 "value": "5"
               },
-              "operator": ">"
+              "operator": ">",
+              "type": "bool"
             },
             "sentence": "while"
           }
         ],
         "condition": {
           "e1": {
-            "type": "NAME",
+            "type": "int",
             "value": "a"
           },
           "e2": {
-            "type": "INT",
+            "type": "int",
             "value": "100"
           },
-          "operator": ">"
+          "operator": ">",
+          "type": "bool"
         }
       },
       {
@@ -90,17 +95,18 @@
               {
                 "expr": {
                   "e1": {
-                    "type": "NAME",
+                    "type": "int",
                     "value": "a"
                   },
                   "e2": {
-                    "type": "INT",
+                    "type": "int",
                     "value": "1"
                   },
-                  "operator": "-"
+                  "operator": "-",
+                  "type": "int"
                 },
-                "sentence": "assign",
-                "type": "a"
+                "name": "a",
+                "sentence": "assign"
               },
               {
                 "cases": [
@@ -114,33 +120,37 @@
                       "e1": {
                         "e1": {
                           "e1": {
-                            "type": "NAME",
+                            "type": "int",
                             "value": "a"
                           },
                           "e2": {
-                            "type": "INT",
+                            "type": "int",
                             "value": "3"
                           },
-                          "operator": "%"
+                          "operator": "%",
+                          "type": "int"
                         },
                         "e2": {
-                          "type": "INT",
+                          "type": "int",
                           "value": "0"
                         },
-                        "operator": "=="
+                        "operator": "==",
+                        "type": "bool"
                       },
                       "e2": {
                         "e1": {
-                          "type": "NAME",
+                          "type": "int",
                           "value": "a"
                         },
                         "e2": {
-                          "type": "INT",
+                          "type": "int",
                           "value": "0"
                         },
-                        "operator": "<"
+                        "operator": "<",
+                        "type": "bool"
                       },
-                      "operator": "&&"
+                      "operator": "&&",
+                      "type": "bool"
                     }
                   }
                 ],
@@ -148,7 +158,7 @@
               }
             ],
             "expr": {
-              "type": "BOOL",
+              "type": "bool",
               "value": "true"
             },
             "sentence": "while"
@@ -164,7 +174,7 @@
   },
   {
     "expr": {
-      "type": "NAME",
+      "type": "int",
       "value": "a"
     },
     "sentence": "write"

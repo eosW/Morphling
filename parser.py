@@ -119,7 +119,7 @@ def p_declare2(p):
         print("ERROR: line{:d}: type mismatch".format(p.slice[1].lineno))
         raise SyntaxError
     typetable[p[2]] = p[1]
-    p[0] = {'sentence':'declare_init', 'type':p[1], 'name':p[2], 'expr':p[4]['value']}
+    p[0] = {'sentence':'declare_init', 'type':p[1], 'name':p[2], 'expr':p[4]}
 
 def p_assign(p):
     """
@@ -132,7 +132,7 @@ def p_assign(p):
         print("ERROR: line{:d}: type mismatch".format(p.slice[1].lineno))
         raise SyntaxError
     typetable[p[2]] = p[1]
-    p[0] = {'sentence':'assign', 'type':p[1], 'expr':p[3]['value']}
+    p[0] = {'sentence':'assign', 'name':p[1], 'expr':p[3]}
 
 def p_control(p):
     """
@@ -155,7 +155,7 @@ def p_while(p):
     if p[3]['type'] != 'bool':
         print("ERROR: line{:d}: expression is not bool".format(p.slice[3].lineno))
         raise SyntaxError
-    p[0] = {'sentence':'while', 'expr':p[3]['value'], 'block':p[6]}
+    p[0] = {'sentence':'while', 'expr':p[3], 'block':p[6]}
 
 def p_if(p):
     """
@@ -164,7 +164,7 @@ def p_if(p):
     if p[3]['type'] != 'bool':
         print("ERROR: line{:d}: expression is not bool".format(p.slice[3].lineno))
         raise SyntaxError
-    p[0] = {'sentence':'if', 'cases':[{'condition':p[3]['value'], 'block':p[6]}] + p[7] + p[8]}
+    p[0] = {'sentence':'if', 'cases':[{'condition':p[3], 'block':p[6]}] + p[7] + p[8]}
 
 def p_elif(p):
     """
@@ -173,7 +173,7 @@ def p_elif(p):
     if p[4]['type'] != 'bool':
         print("ERROR: line{:d}: expression is not bool".format(p.slice[4].lineno))
         raise SyntaxError
-    p[0] = p[1] + [{'condition':p[4]['value'], 'block':p[7]}]
+    p[0] = p[1] + [{'condition':p[4], 'block':p[7]}]
 
 def p_elif2(p):
     """
@@ -205,7 +205,7 @@ def p_aexpr_b_b(p):
     if p[1]['type'] != 'int' or p[3]['type'] != 'int':
         print("ERROR: line{:d}: operator {:s} applies to int values only".format(p.slice[2].lineno,p[2]))
         raise SyntaxError
-    p[0] = {'value':{'operator':p[2], 'e1':p[1]['value'], 'e2':p[3]['value']},'type':'int'}
+    p[0] = {'operator':p[2], 'e1':p[1], 'e2':p[3],'type':'int'}
 
 
 def p_aexpr_b_n(p):
@@ -224,7 +224,7 @@ def p_aexpr_b_n(p):
         restype = 'int'
     else:
         restype = 'float'
-    p[0] = {'value':{'operator':p[2], 'e1':p[1]['value'], 'e2':p[3]['value']},'type':restype}
+    p[0] = {'operator':p[2], 'e1':p[1], 'e2':p[3],'type':restype}
 
 def p_aexpr_u_n(p):
     """
@@ -233,7 +233,7 @@ def p_aexpr_u_n(p):
     if p[2]['type'] == 'bool':
         print("ERROR: line{:d}: operator {:s} does not applies to bool values".format(p.slice[1].lineno,p[1]))
         raise SyntaxError
-    p[0] = {'value':{'operator':p[1], 'e1':p[2]['value']},'type':p[2]['type']}
+    p[0] = {'operator':p[1], 'e1':p[2],'type':p[2]['type']}
 
 def p_aexpr_u_b(p):
     """
@@ -242,7 +242,7 @@ def p_aexpr_u_b(p):
     if p[2]['type'] != 'bool':
         print("ERROR: line{:d}: operator {:s} applies to bool values only".format(p.slice[1].lineno,p[1]))
         raise SyntaxError
-    p[0] = {'value':{'operator':p[1], 'e1':p[2]['value']},'type':p[2]['type']}
+    p[0] = {'operator':p[1], 'e1':p[2],'type':p[2]['type']}
 
 def p_aexpr_p(p):
     """
@@ -254,7 +254,7 @@ def p_aexpr_cast(p):
     """
     aexpr : TYPE LP aexpr RP
     """
-    p[0] = {'value':{'operator': 'cast', 'e1': p[1], 'e2':p[3]['value']},'type':p[1]}
+    p[0] = {'operator': 'cast', 'e1': p[1], 'e2':p[3],'type':p[1]}
 
 def p_aexpr_n(p):
     """
@@ -269,7 +269,7 @@ def p_aexpr_n(p):
             print("ERROR: line{:d}: undecleared variable {:s}".format(p.slice[1].lineno,p[1]))
             raise SyntaxError
         restype = typetable[p[1]]
-    p[0] = {'value':{'type':p.slice[1].type,'value':p[1]},'type':restype}
+    p[0] = {'type':restype,'value':p[1]}
 
 def p_expr_b_b(p):
     """
@@ -279,7 +279,7 @@ def p_expr_b_b(p):
     if p[1]['type'] != 'bool' or p[3]['type'] != 'bool':
         print("ERROR: line{:d}: operator {:s} applies to bool values only".format(p.slice[2].lineno,p[2]))
         raise SyntaxError
-    p[0] = {'value':{'operator':p[2], 'e1':p[1]['value'], 'e2':p[3]['value']},'type':'bool'}
+    p[0] = {'operator':p[2], 'e1':p[1], 'e2':p[3],'type':'bool'}
 
 def p_expr_c(p):
     """
@@ -293,7 +293,7 @@ def p_expr_c(p):
     if p[1]['type'] == 'bool' or p[3]['type'] == 'bool':
         print("ERROR: line{:d}: operator {:s} does not applies to bool values".format(p.slice[2].lineno,p[2]))
         raise SyntaxError
-    p[0] = {'value':{'operator':p[2], 'e1':p[1]['value'], 'e2':p[3]['value']},'type':'bool'}
+    p[0] = {'operator':p[2], 'e1':p[1], 'e2':p[3],'type':'bool'}
 
 def p_expr_u(p):
     """
@@ -302,7 +302,7 @@ def p_expr_u(p):
     if p[2]['type'] != 'bool':
         print("ERROR: line{:d}: operator {:s} applies to bool values only".format(p.slice[1].lineno,p[1]))
         raise SyntaxError
-    p[0] = {'value':{'operator':p[1], 'e1':p[2]['value']},'type':p[2]['type']}
+    p[0] = {'operator':p[1], 'e1':p[2],'type':p[2]}
 
 def p_expr_dg(p):
     """
@@ -321,7 +321,7 @@ def p_write(p):
     """
     write : WRITE expr
     """
-    p[0] = {'sentence':'write', 'expr':p[2]['value']}
+    p[0] = {'sentence':'write', 'expr':p[2]}
 
 precedence = (
     ('left', 'OR'),
