@@ -68,7 +68,10 @@ class Parser
         try {  
                 file = new File(filename);
                 fw = new FileWriter(file);
+                fw.write("#include <iostream>\nusing namespace::std;\n\n");
+                fw.write("int main(int argc, char *argv[]) {\n");
                 translate(cmg, 1);
+                fw.write("\treturn 0;\n}\n");
                 fw.close();
             } catch (IOException e) {  
                 e.printStackTrace();  
