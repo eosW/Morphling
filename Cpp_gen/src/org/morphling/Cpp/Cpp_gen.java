@@ -2,7 +2,8 @@
 * A translator to translate the parse result into C++.
 * Author : Lixue Zhang
 */
-package windowAPP;
+
+package org.morphling.Cpp;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,11 +15,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;  
   
-public class Event {
+public class Cpp_gen {
     
     public static void main(String[] args) { 
         ReadAndPreprocessing r = new ReadAndPreprocessing(args[0]);
-        String filename = args[0].split("\\.")[0]+"_toCpp.ast";
+        String filename = args[0].split("\\.")[0]+".cpp";
         new Parser(r.commands, filename);
         /*ReadAndPreprocessing r = new ReadAndPreprocessing("./testcase");
         String filename = "mytestcase.txt";
@@ -220,7 +221,7 @@ class Parser
     private void assign(JSONObject obj, int tab) throws IOException
     {
         indention(tab);
-        fw.write(obj.get("type")+" = ");
+        fw.write(obj.get("name")+" = ");
         expr(obj.getJSONObject("expr"));
         fw.write(";\n");
     }

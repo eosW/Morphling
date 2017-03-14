@@ -1,5 +1,8 @@
 import json
 
+import sys
+
+
 def genfile(infilename,outfilename):
     with open(outfilename,'wb') as target:
         with open(infilename) as source:
@@ -72,4 +75,8 @@ def expreval(expr):
         return "({:s}) {:s} ({:s})".format(expreval(e1),operator,expreval(e2))
     return "{:s} ({:s})".format(operator, expreval(e1))
 
-genfile("testcase2.ast","testcase2.java")
+
+if __name__ == "__main__":
+    args = sys.argv
+    filein = args[1]
+    genfile(filein,filein[:-4]+".java")

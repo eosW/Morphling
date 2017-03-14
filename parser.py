@@ -185,7 +185,7 @@ def p_else(p):
     """
     else : ELSE COLON block
     """
-    p[0] = [{'condition':{'type':'BOOL','value':'true'}, 'block':p[3]}]
+    p[0] = [{'condition':{'type':'bool','value':'true'}, 'block':p[3]}]
 
 def p_else2(p):
     """

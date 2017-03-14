@@ -165,7 +165,7 @@
           }
         ],
         "condition": {
-          "type": "BOOL",
+          "type": "bool",
           "value": "true"
         }
       }

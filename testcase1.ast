@@ -12,7 +12,7 @@
   {
     "expr": {
       "e1": {
-        "type": "name",
+        "type": "float",
         "value": "a"
       },
       "e2": {
@@ -22,8 +22,8 @@
       "operator": "**",
       "type": "float"
     },
-    "sentence": "assign",
-    "type": "a"
+    "name": "a",
+    "sentence": "assign"
   },
   {
     "expr": {
@@ -31,7 +31,7 @@
         "e1": "int",
         "e2": {
           "e1": {
-            "type": "name",
+            "type": "float",
             "value": "a"
           },
           "e2": {
@@ -57,7 +57,7 @@
   },
   {
     "expr": {
-      "type": "name",
+      "type": "int",
       "value": "b"
     },
     "sentence": "write"

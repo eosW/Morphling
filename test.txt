@@ -1,4 +1,0 @@
-float a;
-a = 4*3e2+-.5**2;
-bool b = 6>.7&&bool(7);
-int c = int(b+8)

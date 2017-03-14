@@ -1,5 +1,8 @@
 import json
 
+import sys
+
+
 def gencode(astname,codename):
     with open(codename,'w') as target: 
         with open(astname) as source:
@@ -10,6 +13,10 @@ def gencode(astname,codename):
 def expreval(expr):
     if "value" in expr:
         value = expr['value']
+        if value == "true":
+            return "True"
+        if value == "false":
+            return "False"
         return value
     else:
         operator = expr['operator']
@@ -18,7 +25,12 @@ def expreval(expr):
             e2 = expr['e2']
             if operator=='cast':
                 return "({:s}) ({:s})".format({'int':'int','float':'float','bool':'bool'}[e1],expreval(e2))
+            conlist = {"&&":"and","||":"or"}
+            if operator in conlist:
+                operator = conlist[operator]
             return "({:s}) {:s} ({:s})".format(expreval(e1),operator,expreval(e2))
+        if operator == "!":
+            operator = "not"
         return "{:s} ({:s})".format(operator, expreval(e1))
 
 def genblock(block,target,indent):
@@ -64,5 +76,8 @@ def genblock(block,target,indent):
             target.write("{:s}while {:s}: \n".format(indentstr,expreval(expr)))
             genblock(subblock,target,indent+1)
 
-gencode("testcase2.ast","testcase2.py")
+if __name__ == "__main__":
+    args = sys.argv
+    filein = args[1]
+    gencode(filein,filein[:-4]+".py")
 

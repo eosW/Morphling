@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Cpp_gen:jar">
+    <output-path>$PROJECT_DIR$/build/artifacts/Cpp_gen_jar</output-path>
+    <root id="archive" name="Cpp_gen.jar">
+      <element id="module-output" name="Cpp_gen" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Cpp_gen/src/org.json-20130603.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

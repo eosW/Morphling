@@ -1,0 +1,95 @@
+[
+  {
+    "name": "a",
+    "sentence": "declare",
+    "type": "int"
+  },
+  {
+    "name": "a",
+    "sentence": "read",
+    "type": "int"
+  },
+  {
+    "expr": {
+      "type": "int",
+      "value": "1"
+    },
+    "name": "b",
+    "sentence": "declare_init",
+    "type": "int"
+  },
+  {
+    "block": [
+      {
+        "cases": [
+          {
+            "block": [
+              {
+                "expr": {
+                  "type": "int",
+                  "value": "b"
+                },
+                "sentence": "write"
+              }
+            ],
+            "condition": {
+              "e1": {
+                "e1": {
+                  "type": "int",
+                  "value": "a"
+                },
+                "e2": {
+                  "type": "int",
+                  "value": "b"
+                },
+                "operator": "%",
+                "type": "int"
+              },
+              "e2": {
+                "type": "int",
+                "value": "0"
+              },
+              "operator": "==",
+              "type": "bool"
+            }
+          }
+        ],
+        "sentence": "if"
+      },
+      {
+        "expr": {
+          "e1": {
+            "type": "int",
+            "value": "b"
+          },
+          "e2": {
+            "type": "int",
+            "value": "1"
+          },
+          "operator": "+",
+          "type": "int"
+        },
+        "name": "b",
+        "sentence": "assign"
+      }
+    ],
+    "expr": {
+      "e1": {
+        "type": "int",
+        "value": "b"
+      },
+      "e2": {
+        "type": "int",
+        "value": "a"
+      },
+      "operator": "<=",
+      "type": "bool"
+    },
+    "sentence": "while"
+  },
+  {
+    "name": "a",
+    "sentence": "read",
+    "type": "int"
+  }
+]
